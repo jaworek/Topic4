@@ -1,0 +1,150 @@
+body {background-image: url(images/bg.png); margin: 0; padding: 0; font-family: calibri, sans-serif;}
+
+
+aside {width: 200px; position: fixed; height: 100vh; left: 100%; margin-left: -240px; background-color: #ddd; border-left: 5px solid #bbb; padding: 20px;}
+#closeside {float: right; font-weight: bold; cursor: pointer;}
+
+.character {position: absolute; top: 200px; left: 200px; display: block;}
+.character .body {width: 32px; height: 32px; background-image: url(images/body0.png); background-position: 64px 0px; margin-top: 14px; }
+.character .head {width: 32px; height: 32px; background-image: url(images/head0.png); margin-bottom: 0;position: absolute; background-repeat: no-repeat; background-position: 0px -64px;}
+
+aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom: 20px; overflow: auto;}
+.heads li, .bodies li {width: 32px; height: 32px; background-position: 0 -64px; float: left; cursor: pointer; border: 2px solid #ddd; margin-right: 4px;}
+.heads li:hover, .bodies li:hover {border: 2px solid red;}
+#head0 {background-image: url(images/head0.png);}
+
+#head1 {background-image: url(images/head1.png);}
+#head2 {background-image: url(images/head2.png);}
+#head3 {background-image: url(images/head3.png);}
+#head4 {background-image: url(images/head4.png);}
+
+.bodies li {background-position: 64px 0px;}
+#body0 {background-image: url(images/body0.png);}
+#body1 {background-image: url(images/body1.png);}
+#body2 {background-image: url(images/body2.png);}
+#body3 {background-image: url(images/body3.png);}
+#body4 {background-image: url(images/body4.png);}
+
+.tree {position: absolute; left: 400px; top: 300px;}
+
+#opponent {left: 500px; top: 500px;}
+#opponent .body {background-image: url(images/body1.png);}
+#opponent .head {background-image: url(images/head1.png);}
+
+.character.standUp .head {
+	background-position: 0px 0px;
+}
+
+.character.standDown .head {
+	background-position: 0px -64px;
+}
+
+.character.standLeft .head {
+	background-position: 0px -32px;
+}
+
+.character.standRight .head {
+	background-position: 0px -96px;
+}
+
+.character.standUp .body {
+	background-position: 0px 0px;
+}
+
+.character.standDown .body {
+	background-position: -64px 0px;
+}
+
+.character.standLeft .body {
+	background-position: -32px 0px;
+}
+
+.character.standRight .body {
+	background-position: -96px 0px;
+}
+
+
+
+
+.character.walkUp .head { 
+	background-position: 0px 0px;
+	animation: headbob 0.5s infinite;
+}
+
+.character.walkUp .body {
+    animation: walkup 1s steps(3) infinite;
+}
+
+
+.character.walkDown .head { 
+	background-position: 0px -64px;
+	animation: headbob 0.75s infinite;
+}
+
+.character.walkDown .body {
+    animation: walkdown 1s steps(3) infinite;
+}
+
+.character.walkLeft .head { 
+	background-position: 0px -32px;
+	margin-top: -3px;
+	margin-left: -2px;
+	animation: headbob2 0.75s infinite;
+}
+
+.character.walkLeft .body {
+    animation: walkleft 1s steps(3) infinite;
+}
+
+@keyframes walkleft {
+   0%, 100% { background-position:  -32px  -32px; }
+     50% { background-position: -32px -128px; }
+}
+
+
+.character.walkRight .head { 
+	background-position: 0px -96px;
+	margin-top: -3px;
+	margin-left: 4px;
+	animation: headbob3 0.75s infinite;
+}
+
+.character.walkRight .body {
+    animation: walkright 1s steps(3) infinite;
+}
+
+@keyframes walkright {
+   0%, 100% { background-position:  -96px  -32px; }
+     50% { background-position: -96px -128px; }
+}
+
+
+
+@keyframes walkup {
+   0%, 100% { background-position:  0px  -32px; }
+     50% { background-position: 0px -128px; }
+}
+
+
+@keyframes walkdown {
+   0%, 100% { background-position:  -64px  -32px; }
+     50% { background-position: -64px -128px; }
+}
+
+
+@keyframes headbob {
+   0%, 100% { margin-top: 0px; }
+     50% { margin-top: 1px; }
+}
+
+
+@keyframes headbob2 {
+   0%, 100% { margin-left: -2px; }
+     50% { margin-left: 0px; }
+}
+
+
+@keyframes headbob3 {
+   0%, 100% { margin-left: 2px; }
+     50% { margin-left: 0px; }
+}
