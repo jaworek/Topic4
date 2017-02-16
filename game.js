@@ -1,4 +1,5 @@
 var player;
+var tree;
 var leftPressed = false;
 var rightPressed = false;
 var upPressed = false;
@@ -9,6 +10,7 @@ function move()
 {
     var positionLeft = player.offsetLeft;
     var positionTop = player.offsetTop;
+    var detected = treeDetection();
     if (leftPressed)
     {
         if (positionLeft < 0)
@@ -17,8 +19,16 @@ function move()
         }
         else
         {
-            player.style.left = positionLeft - 1 + 'px';
-            player.className = 'character walkLeft';
+            if (!detected)
+            {
+                player.style.left = positionLeft - 1 + 'px';
+                player.className = 'character walkLeft';
+            }
+            else
+            {
+                player.style.left = positionLeft + 1 + 'px';
+            }
+
         }
     }
     if (rightPressed)
@@ -29,8 +39,15 @@ function move()
         }
         else
         {
-            player.style.left = positionLeft + 1 + 'px';
-            player.className = 'character walkRight';
+            if (!detected)
+            {
+                player.style.left = positionLeft + 1 + 'px';
+                player.className = 'character walkRight';
+            }
+            else
+            {
+                player.style.left = positionLeft - 1 + 'px';
+            }
         }
     }
     if (upPressed)
@@ -41,8 +58,15 @@ function move()
         }
         else
         {
-            player.style.top = positionTop - 1 + 'px';
-            player.className = 'character walkUp';
+            /*if (!detected)
+            {*/
+                player.style.top = positionTop - 1 + 'px';
+                player.className = 'character walkUp';
+            /*}
+            else
+            {
+                player.style.top = positionTop + 1 + 'px';
+            }*/
         }
     }
     if (downPressed)
@@ -53,8 +77,15 @@ function move()
         }
         else
         {
-            player.style.top = positionTop + 1 + 'px';
-            player.className = 'character walkDown';
+            /*if (!detected)
+            {*/
+                player.style.top = positionTop + 1 + 'px';
+                player.className = 'character walkDown';
+            /*}
+            else
+            {
+                player.style.top = positionTop - 1 + 'px';
+            }*/
         }
     }
 }
@@ -112,6 +143,29 @@ function keyUp()
         {
             player.className = 'character standDown';
         }
+    }
+}
+
+function treeDetection()
+{
+    for (var i = 0; i < tree.length; i++)
+    {
+        if (player.offsetLeft == tree[i].offsetLeft + 128 && player.offsetTop + 46 >= tree[i].offsetTop && player.offsetTop <= tree[i].offsetTop + 160)
+        {
+            return true;
+        }
+        if (player.offsetLeft + 32 == tree[i].offsetLeft && player.offsetTop + 46 >= tree[i].offsetTop && player.offsetLeft <= tree[i].offsetLeft + 160)
+        {
+            return true;
+        }
+        /*if (player.offsetTop == tree[i].offsetTop + 160 && player.offsetLeft + 32 >= tree[i].offsetLeft && player.offsetLeft <= tree[i].offsetLeft + 128)
+        {
+            return true;
+        }
+        if (player.offsetTop + 46 == tree[i].offsetTop && player.offsetLeft + 32 >= tree[i].offsetLeft && player.offsetLeft <= tree[i].offsetLeft + 128)
+        {
+            return true;
+        }*/
     }
 }
 
@@ -192,6 +246,7 @@ function asideOpen()
 function start()
 {
     player = document.getElementById('player');
+    tree = document.getElementsByClassName('tree');
 
     addHead();
     addBody();
